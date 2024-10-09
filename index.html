@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Synnefo - Portofolio</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @keyframes backgroundAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298, #f39c12);
+            background-size: 400% 400%;
+            animation: backgroundAnimation 12s ease infinite;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            text-align: center;
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            margin: 40px 0 20px;
+            font-size: 48px;
+            font-weight: 700;
+            color: #f39c12;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .about {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .team-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            padding: 0 15px;
+            margin: 0 auto;
+            margin-top: 30px;
+        }
+
+        .anggota {
+            width: 150px;
+            height: 200px;
+            border-radius: 15px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            background: #34495e;
+            border: 2px solid #f39c12;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .anggota img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .anggota:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-content img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content h3 {
+            color: #333;
+            font-size: 28px;
+            margin: 0;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .modal-content p {
+            color: black;
+            font-size: 18px;
+        }
+
+        .modal-content a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .modal-content a:hover {
+            text-decoration: underline;
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .logo-container img {
+            width: 100px;
+            height: auto;
+            margin-left: 10px;
+        }
+
+        .infinite-learning-logo {
+            width: 100px;
+            height: auto;
+        }
+
+        /* New Quote Box Style */
+        .quote-box {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .quote-box p {
+            font-size: 20px;
+            color: #f39c12;
+            font-style: italic;
+        }
+
+        /* Close Button Style */
+        .close {
+            color: #f39c12;
+            font-size: 30px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .anggota {
+                width: 120px;
+                height: 160px;
+            }
+
+            .quote-box {
+                padding: 15px;
+            }
+
+            .quote-box p {
+                font-size: 16px;
+            }
+
+            .modal-content {
+                padding: 20px;
+            }
+
+            .modal-content h3 {
+                font-size: 24px;
+            }
+
+            .modal-content p {
+                font-size: 16px;
+            }
+
+            .modal-content a {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>The Sýnnefo</h1>
+
+    <div id="team">
+        <div class="team-list">
+            <!-- Anggota 1 -->
+            <div class="anggota" onclick="openModal('modal1')">
+                <img src="Image/Rzky.jpeg" alt="Rizky">
+            </div>
+            <!-- Anggota 2 -->
+            <div class="anggota" onclick="openModal('modal2')">
+                <img src="Image/paldan.jpeg" alt="Paldan">
+            </div>
+            <!-- Anggota 3 -->
+            <div class="anggota" onclick="openModal('modal3')">
+                <img src="Image/des.jpeg" alt="Sinta">
+            </div>
+            <!-- Anggota 4 -->
+            <div class="anggota" onclick="openModal('modal4')">
+                <img src="Image/rio.jpeg" alt="Andi">
+            </div>
+            <!-- Anggota 5 -->
+            <div class="anggota" onclick="openModal('modal5')">
+                <img src="Image/dan.jpeg" alt="Dewi">
+            </div>
+        </div>
+    </div>
+
+    <!-- Quote Box -->
+    <div class="quote-box">
+        <p>"Kesuksesan bukanlah kunci kebahagiaan. Kebahagiaan adalah kunci kesuksesan. Jika Anda mencintai apa yang
+            Anda lakukan, Anda akan sukses. Ingatlah selalu, kesuksesan adalah perjalanan, bukan tujuan, jadi teruslah
+            bergerak maju, terus belajar, dan jangan pernah menyerah." - Albert Schweitzer</p>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">&times;</span>
+            <img src="Image/Rzky.jpeg" alt="Rizky">
+            <h3>Rizky</h3>
+            <p>Universitas Dinamika Bangsa Jambi</p>
+            <a href="https://www.linkedin.com/in/rizky-rizky-793b5432a" target="_blank">LinkedIn</a>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+            <img src="Image/paldan.jpeg" alt="Paldan">
+            <h3>Naufal Zidan</h3>
+            <p>Universitas Pembangunan Nasional Veteran Jakarta</p>
+            <a href="https://www.linkedin.com/in/naufalzidan1907" target="_blank">LinkedIn</a>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">&times;</span>
+            <img src="Image/des.jpeg" alt="Sinta">
+            <h3>Deslika Situmorang</h3>
+            <p>Institut Teknologi Batam</p>
+            <a href="https://www.linkedin.com/in/deslika-situmorang-945611330" target="_blank">LinkedIn</a>
+        </div>
+    </div>
+
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal4')">&times;</span>
+            <img src="Image/rio.jpeg" alt="Andi">
+            <h3>Kwok Tan Riyo</h3>
+            <p>Universitas Internasional Batam</p>
+            <a href="https://www.linkedin.com/in/kwok-tan-riyo-3a8b71312" target="_blank">LinkedIn</a>
+        </div>
+    </div>
+
+    <div id="modal5" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal5')">&times;</span>
+            <img src="Image/dan.jpeg" alt="Dewi">
+            <h3>Wilhelmus Ervando W.</h3>
+            <p>Universitas Internasional Batam</p>
+            <a href="http://www.linkedin.com/in/wilhelmus-ervando-walangare-291679275" target="_blank">LinkedIn</a>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "flex";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
